@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simulating iOS pagination</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,  maximum-scale=1.0, user-scalable=no">
+    <style type="text/css">
+        html, body, #pages-container, li {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+            font-size: 7em;
+            text-align: center;
+            line-height: 100%;
+            font-family: sans-serif;
+            color: #FFF;
+        }
+
+        #pages-container { overflow: hidden; }
+    </style>
+</head>
+<body>
+<ul id="pages-container">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+</ul>
+<script type="text/javascript" src='js/swipe-paginate.js'></script>
+<script type="text/javascript">
+    (function()
+    {
+        var randomColor = function()
+        {
+            var hex = '';
+            for(var i = 7; --i > 0;)
+            {
+                hex += Math.ceil(Math.random() * 0xf).toString(16);
+            }
+
+            return '#' + hex;
+        };
+
+        var container = document.getElementById('pages-container');
+        var ctnChildren = container.childNodes;
+
+        for(var i = ctnChildren.length; --i >= 0;)
+        {
+            if(ctnChildren[i].nodeType == 1)
+            {
+                ctnChildren[i].style.backgroundColor = randomColor();
+            }
+        }
+
+        var swipe = new SwipePaginate(container);
+    })();
+</script>
+</body>
+</html>
